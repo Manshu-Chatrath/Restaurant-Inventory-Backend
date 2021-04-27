@@ -56,9 +56,9 @@ module.exports=class dish{
     {
         return db.execute('select * from extras where dishId=(?)',[id]);
     }  
-    static extra(id)
-    {   console.log("We are here")
-        return db.execute('SELECT dishes.recepie,dishes.title as name,dishes.url,extras.title,extras.id,extras.dishId,ROUND(extras.price, 2) as price,extras.category FROM extras LEFT JOIN dishes ON dishes.id=(?)',[id])
+   static extra(id)
+    {   
+        return db.execute('SELECT * FROM dishes LEFT JOIN extras ON dishes.id = extras.dishId where extras.dishId=(?) UNION SELECT * FROM dishes RIGHT JOIN extras ON extras.dishId = dishes.id WHERE extras.dishId=(?)',[id,id])
     }
     static deleteextra(id)
     {
