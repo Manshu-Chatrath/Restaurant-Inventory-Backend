@@ -1,7 +1,7 @@
 const Dishes=require('../models/main');
 const db=require('../database/database');
 const { body } = require('express-validator');
-const stripe = require("stripe")('sk_test_51HvZrNHtX5JzPZUWNl6CVNOkRcM2c2Nrs3KR1sCXwMm0B2wcyTZ1HBoiDqHBByJ1eg26M2FOAyYO73u8MAmVYzHR00OA5YOksn');
+const stripe = require("stripe")('');
 let sgMail=require('@sendgrid/mail');
 let nodemailer=require('nodemailer');
 let sendmailer=require('nodemailer-sendgrid-transport');
@@ -172,7 +172,7 @@ exports.checkout=async (req,res,next)=>{
 			confirm: true
 		})
         Dishes.deletecart(req.body.cartid).then(result=>{
-            sgMail.setApiKey('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')
+            sgMail.setApiKey('')
             const msg = {
                 to: req.body.email, // Change to your recipient
                 from: 'manshuchatrath20@gmail.com', // Change to your verified sender
@@ -201,7 +201,7 @@ exports.checkout=async (req,res,next)=>{
 }
 exports.booking=(req,res,next)=>{
     console.log(req.body)
-    sgMail.setApiKey('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')
+    sgMail.setApiKey('')
     const msg = {
         to: req.body.email, // Change to your recipient
         from: 'manshuchatrath20@gmail.com', // Change to your verified sender
