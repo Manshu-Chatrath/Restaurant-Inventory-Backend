@@ -1,11 +1,9 @@
-const mysql=require('mysql2');
-
+const mysql = require("mysql2");
+const { key } = require("../key");
 const pool = mysql.createPool({
-    host: 'us-cdbr-east-03.cleardb.com',
-	user: 'bb05fe2086dcf8',
-    database: 'heroku_c1f7e15b22234a3',
-    password: '380b49fd',
-   
+  host: key.dataBaseHost,
+  user: key.dataBaseUser,
+  database: key.dataBase,
+  password: key.password,
 });
 module.exports = pool.promise();
-  
